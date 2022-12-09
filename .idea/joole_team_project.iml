@@ -10,7 +10,9 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
-        <datasource-mapping />
+        <datasource-mapping>
+          <factory-entry name="joole_team_project" />
+        </datasource-mapping>
         <naming-strategy-map />
       </configuration>
     </facet>
@@ -28,6 +30,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-batch:3.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:3.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-logging:3.0.0" level="project" />
@@ -39,7 +43,6 @@
     <orderEntry type="library" name="Maven: jakarta.annotation:jakarta.annotation-api:2.1.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.batch:spring-batch-core:5.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.batch:spring-batch-infrastructure:5.0.0" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-beans:6.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:6.0.2" level="project" />
     <orderEntry type="library" name="Maven: io.micrometer:micrometer-core:1.10.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.hdrhistogram:HdrHistogram:2.1.12" level="project" />
@@ -49,7 +52,6 @@
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-jdbc:3.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-jdbc:3.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-relational:3.0.0" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:3.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:3.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-aop:3.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.9.9.1" level="project" />
@@ -244,6 +246,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: jakarta.servlet:jakarta.servlet-api:6.0.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.security:spring-security-test:6.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:6.0.0" level="project" />
-    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:3.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-beans:6.0.2" level="project" />
   </component>
 </module>

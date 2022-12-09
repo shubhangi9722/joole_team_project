@@ -5,12 +5,14 @@ import org.springframework.data.annotation.Id;
 
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 @Entity
 @Table(name = "project")
-public class Project {
+public class Project{
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "project_id")
@@ -42,6 +44,8 @@ public class Project {
         this.id = id;
     }
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = Project.class)
+    @JoinColumn(name = "project_id", referencedColumnName = "id")
     private Set<Project> projectList = new HashSet<Project>(){};
 
     public Set<Project> getProjectList() {

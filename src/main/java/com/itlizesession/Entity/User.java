@@ -3,21 +3,16 @@ package com.itlizesession.Entity;
 import org.springframework.data.annotation.Id;
 //import org.springframework.data.relational.core.mapping.Column;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy =
+            GenerationType.IDENTITY)
+    private Integer userId;
 
     @Column(name = "user_type")
     private String user_type;
@@ -31,26 +26,30 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "address")
+    private String address;
+
     @OneToMany(mappedBy = "user", orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.EAGER )
     private Set<Project> projectList = new HashSet<Project>(){};
 
-    public User(Long id, String user_type, String userName, String userPassword, String address) {
-        this.id = id;
+    public User(Integer userId, String user_type, String userName, String userPassword, String email, String address) {
+        this.userId = userId;
         this.user_type = user_type;
         this.userName = userName;
         this.userPassword = userPassword;
         this.email = email;
+        this.address = address;
     }
 
     public User() {
     }
 
-    public Long getId() {
-        return id;
+    public Integer getId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getUser_type() {
@@ -84,6 +83,10 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getAddress() { return address; }
+
+    public void setAddress(String address) { this.address = this.address; }
 
     public Set<Project> getProjectList() {
         return projectList;

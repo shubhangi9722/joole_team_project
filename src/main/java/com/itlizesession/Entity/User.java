@@ -3,21 +3,17 @@ package com.itlizesession.Entity;
 import org.springframework.data.annotation.Id;
 //import org.springframework.data.relational.core.mapping.Column;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "User")
 public class User {
-    @Id
+    @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "user_id", nullable = false)
+    private Integer user_id;
 
     @Column(name = "user_type")
     private String user_type;
@@ -34,8 +30,16 @@ public class User {
     @OneToMany(mappedBy = "user", orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.EAGER )
     private Set<Project> projectList = new HashSet<Project>(){};
 
-    public User(Long id, String user_type, String userName, String userPassword, String address) {
-        this.id = id;
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
+    }
+
+    public User(Integer user_id, String user_type, String userName, String userPassword, String address) {
+        this.user_id = user_id;
         this.user_type = user_type;
         this.userName = userName;
         this.userPassword = userPassword;
@@ -45,12 +49,12 @@ public class User {
     public User() {
     }
 
-    public Long getId() {
-        return id;
+    public Integer getId() {
+        return user_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Integer id) {
+        this.user_id = id;
     }
 
     public String getUser_type() {

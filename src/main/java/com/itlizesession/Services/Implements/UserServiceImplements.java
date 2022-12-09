@@ -4,9 +4,11 @@ import com.itlizesession.Entity.User;
 import com.itlizesession.Repositories.UserRepository;
 import com.itlizesession.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserServiceImplements implements UserService {
     @Autowired
     private UserRepository repository;
@@ -19,6 +21,16 @@ public class UserServiceImplements implements UserService {
     @Override
     public List<User> fetchUserList() {
         return repository.findAll();
+    }
+
+    public User createUserEntity(User user){
+        User userEntity = new User();
+        userEntity.setId(user.getId());
+        userEntity.setUserName(user.getUserName());
+        userEntity.setUserPassword(user.getUserPassword());
+        userEntity.setEmail(user.getEmail());
+        userEntity.setUser_type(user.getUser_type());
+        return userEntity;
     }
 
     @Override

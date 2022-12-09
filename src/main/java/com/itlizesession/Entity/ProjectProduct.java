@@ -1,5 +1,6 @@
 package com.itlizesession.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
@@ -14,30 +15,38 @@ public class ProjectProduct {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "project_id")
-    private int id;
+    private int projProdid;
     private int project_id;
     private int product_id;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Project.class)
+    @JoinColumn(name = "project_id", referencedColumnName = "id")
     private List<Project> projectId;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Product.class)
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private List<Product> productId;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "project_product")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Project.class)
     @JoinColumn(name = "project_id", referencedColumnName = "id")
+    @JsonIgnore
     private Project project;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "project_product")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = Product.class)
     @JoinColumn(name = "product_id", referencedColumnName = "id")
+    @JsonIgnore
     private Product product;
 
     public ProjectProduct() {
 
     }
 
-    public int getId() {
-        return id;
+    public int getProjProdid() {
+        return projProdid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setProjProdid(int projProdid) {
+        this.projProdid = projProdid;
     }
 
     public int getProject_id() {
@@ -87,8 +96,8 @@ public class ProjectProduct {
         projectId.addAll(allProjects);
         productId.addAll(allProducts);
 
-        ((Project) allProjects).setProjectId(id);
-        ((Product) allProducts).setProductId(id);
+        ((Project) allProjects).setProjectId(projProdid);
+        ((Product) allProducts).setProductId(projProdid);
     }
 
 }

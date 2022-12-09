@@ -4,7 +4,6 @@ import com.itlizesession.Services.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.stereotype.Service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserServiceImplementsTest {
 
     @Autowired
-    UserService service;
+    UserService userService;
 
     @Test
     void saveUser() {
@@ -20,10 +19,6 @@ class UserServiceImplementsTest {
 
     @Test
     void fetchUserList() {
-    }
-
-    @Test
-    void createUserEntity() {
     }
 
     @Test

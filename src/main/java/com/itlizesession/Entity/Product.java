@@ -1,6 +1,10 @@
 package com.itlizesession.Entity;
 
+import org.hibernate.mapping.List;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  Created by Zehui Lu
@@ -32,8 +36,8 @@ public class Product {
     private Description description;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    @JoinColumn(name = "project_product_id")
-    private ProjectProduct projectProduct;
+    @JoinColumn(name = "project_product_id", referencedColumnName = "id")
+    private Set<ProjectProduct> project_product_list = new HashSet<ProjectProduct>(){};
 
 
     public Product() {
@@ -86,12 +90,10 @@ public class Product {
         this.description = description;
     }
 
-    public ProjectProduct getProjectProduct() {
-        return projectProduct;
-    }
+    public Set<ProjectProduct> getProject_product_list() { return project_product_list; }
 
-    public void setProjectProduct(ProjectProduct projectProduct) {
-        this.projectProduct = projectProduct;
+    public void setProject_product_list(Set<ProjectProduct> project_product_list) {
+        this.project_product_list = project_product_list;
     }
 }
 

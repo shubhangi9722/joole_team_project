@@ -1,8 +1,5 @@
 package com.itlizesession.Entity;
 
-import org.springframework.data.annotation.Id;
-//import org.springframework.data.relational.core.mapping.Column;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,10 +7,10 @@ import java.util.Set;
 @Entity
 @Table(name = "User")
 public class User {
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id", nullable = false)
-    private Integer user_id;
+    @Column(name = "id", nullable = false)
+    private Integer id;
 
     @Column(name = "user_type")
     private String user_type;
@@ -30,16 +27,10 @@ public class User {
     @OneToMany(mappedBy = "user", orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.EAGER )
     private Set<Project> projectList = new HashSet<Project>(){};
 
-    public Integer getUser_id() {
-        return user_id;
-    }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
-    }
 
-    public User(Integer user_id, String user_type, String userName, String userPassword, String address) {
-        this.user_id = user_id;
+    public User(Integer id, String user_type, String userName, String userPassword, String address) {
+        this.id = id;
         this.user_type = user_type;
         this.userName = userName;
         this.userPassword = userPassword;
@@ -50,11 +41,11 @@ public class User {
     }
 
     public Integer getId() {
-        return user_id;
+        return id;
     }
 
     public void setId(Integer id) {
-        this.user_id = id;
+        this.id = id;
     }
 
     public String getUser_type() {

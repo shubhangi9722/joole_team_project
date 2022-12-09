@@ -1,6 +1,5 @@
 package com.itlizesession.Entity;
 
-import com.itlizesession.Entity.User;
 import org.springframework.data.annotation.Id;
 //import org.springframework.data.relational.core.mapping.Column;
 

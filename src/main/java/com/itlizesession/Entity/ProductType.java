@@ -2,7 +2,6 @@ package com.itlizesession.Entity;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.sql.Timestamp;
 
 @Entity
 @Table(name = "product_type")

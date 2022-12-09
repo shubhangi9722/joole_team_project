@@ -24,10 +24,18 @@ public class UserServiceImplements implements UserService {
     @Override
     public User updateUser(User user, int userId) {
         User existingUser = repository.findById(userId).orElse(null);
+
+        // asserting as these operations will take place only when its not null
+        assert existingUser != null;
+
+
         existingUser.setUserName(user.getUserName());
         existingUser.setUserPassword(user.getUserPassword());
         existingUser.setUser_type(user.getUser_type());
         existingUser.setEmail(user.getEmail());
+
+        //adding for address too as even that is defined
+        existingUser.setAddress(user.getAddress());
         return repository.save(existingUser);
     }
 

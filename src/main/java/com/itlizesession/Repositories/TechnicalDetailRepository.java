@@ -1,0 +1,8 @@
+package com.itlizesession.Repositories;
+
+import com.itlizesession.Entity.TechnicalDetail;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TechnicalDetailRepository extends JpaRepository<TechnicalDetail, Integer> {
+
+}

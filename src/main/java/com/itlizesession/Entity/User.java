@@ -77,7 +77,7 @@ public class User {
         this.userPassword = userPassword;
     }
 
-    public String geteEmail() {
+    public String getEmail() {
         return email;
     }
 

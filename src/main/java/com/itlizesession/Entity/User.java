@@ -1,18 +1,16 @@
 package com.itlizesession.Entity;
 
-import org.springframework.data.annotation.Id;
-//import org.springframework.data.relational.core.mapping.Column;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "User")
 public class User {
     @Id
-    @GeneratedValue(strategy =
-            GenerationType.IDENTITY)
-    private Integer userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Integer id;
 
     @Column(name = "user_type")
     private String user_type;
@@ -26,30 +24,28 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "address")
-    private String address;
-
     @OneToMany(mappedBy = "user", orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.EAGER )
     private Set<Project> projectList = new HashSet<Project>(){};
 
-    public User(Integer userId, String user_type, String userName, String userPassword, String email, String address) {
-        this.userId = userId;
+
+
+    public User(Integer id, String user_type, String userName, String userPassword, String address) {
+        this.id = id;
         this.user_type = user_type;
         this.userName = userName;
         this.userPassword = userPassword;
         this.email = email;
-        this.address = address;
     }
 
     public User() {
     }
 
     public Integer getId() {
-        return userId;
+        return id;
     }
 
-    public void setId(Integer userId) {
-        this.userId = userId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUser_type() {
@@ -83,10 +79,6 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public String getAddress() { return address; }
-
-    public void setAddress(String address) { this.address = this.address; }
 
     public Set<Project> getProjectList() {
         return projectList;

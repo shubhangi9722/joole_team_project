@@ -2,6 +2,9 @@ package com.itlizesession.joolewebdev.joole_web_development.Entity;
 
 import javax.persistence.*;
 
+/**
+ Created by Zehui Lu
+ */
 @Entity
 @Table(name = "description")
 public class Description {
@@ -74,4 +77,5 @@ public class Description {
         this.product = product;
     }
 }
+
 

@@ -1,6 +1,8 @@
 package com.itlizesession.joolewebdev.joole_web_development.Entity;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 /**
  Created by Zehui Lu
@@ -11,7 +13,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
-    private int id;
+    private int productId;
 
     @Column(name = "product_brand")
     private String productBrand;
@@ -33,17 +35,19 @@ public class Product {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     @JoinColumn(name = "project_product_id")
-    private ProjectProduct projectProduct;
+    private List<ProjectProduct> projectProductList;
 
 
     public Product() {
 
     }
 
-    public int getProductId() { return id; }
+    public int getProductId() {
+        return productId;
+    }
 
     public void setProductId(int productId) {
-        this.id = productId;
+        this.productId = productId;
     }
 
     public String getProductBrand() {
@@ -86,12 +90,12 @@ public class Product {
         this.description = description;
     }
 
-    public ProjectProduct getProjectProduct() {
-        return projectProduct;
+    public List<ProjectProduct> getProjectProductList() {
+        return projectProductList;
     }
 
-    public void setProjectProduct(ProjectProduct projectProduct) {
-        this.projectProduct = projectProduct;
+    public void setProjectProductList(List<ProjectProduct> projectProductList) {
+        this.projectProductList = projectProductList;
     }
 }
 

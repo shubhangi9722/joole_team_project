@@ -28,8 +28,8 @@ public class User {
     @Column(name = "user_password")
     private String userPassword;
 
-    @Column(name = "address")
-    private String address;
+    @Column(name = "email")
+    private String email;
 
     @OneToMany(mappedBy = "user", orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.EAGER )
     private Set<Project> projectList = new HashSet<Project>(){};
@@ -39,7 +39,7 @@ public class User {
         this.user_type = user_type;
         this.userName = userName;
         this.userPassword = userPassword;
-        this.address = address;
+        this.email = email;
     }
 
     public User() {
@@ -77,12 +77,12 @@ public class User {
         this.userPassword = userPassword;
     }
 
-    public String getAddress() {
-        return address;
+    public String geteEmail() {
+        return email;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Set<Project> getProjectList() {

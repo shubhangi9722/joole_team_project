@@ -1,7 +1,6 @@
 package com.itlizesession.Entity;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  Created by Zehui Lu
@@ -12,7 +11,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
-    private int productId;
+    private int id;
 
     @Column(name = "product_brand")
     private String productBrand;
@@ -34,19 +33,17 @@ public class Product {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     @JoinColumn(name = "project_product_id")
-    private List<ProjectProduct> projectProductList;
+    private ProjectProduct projectProduct;
 
 
     public Product() {
 
     }
 
-    public int getProductId() {
-        return productId;
-    }
+    public int getProductId() { return id; }
 
     public void setProductId(int productId) {
-        this.productId = productId;
+        this.id = productId;
     }
 
     public String getProductBrand() {
@@ -89,12 +86,12 @@ public class Product {
         this.description = description;
     }
 
-    public List<ProjectProduct> getProjectProductList() {
-        return projectProductList;
+    public ProjectProduct getProjectProduct() {
+        return projectProduct;
     }
 
-    public void setProjectProductList(List<ProjectProduct> projectProductList) {
-        this.projectProductList = projectProductList;
+    public void setProjectProduct(ProjectProduct projectProduct) {
+        this.projectProduct = projectProduct;
     }
 }
 

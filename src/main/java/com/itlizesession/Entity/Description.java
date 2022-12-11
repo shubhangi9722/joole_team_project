@@ -2,6 +2,9 @@ package com.itlizesession.Entity;
 
 import javax.persistence.*;
 
+/**
+ Created by Zehui Lu
+ */
 @Entity
 @Table(name = "description")
 public class Description {

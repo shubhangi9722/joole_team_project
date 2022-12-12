@@ -21,16 +21,13 @@ public class Product {
     @Column(name = "certification")
     private String certification;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "product_type_id")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "product", fetch = FetchType.LAZY)
     private ProductType productType;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "technical_detail_id")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "product", fetch = FetchType.LAZY)
     private TechnicalDetail technicalDetail;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "description_id")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "product", fetch = FetchType.LAZY)
     private Description description;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
@@ -38,6 +35,14 @@ public class Product {
 
     public Product() {
 
+    }
+
+    public Product(String productBrand, String certification, ProductType productType, TechnicalDetail technicalDetail, Description description) {
+        this.productBrand = productBrand;
+        this.certification = certification;
+        this.productType = productType;
+        this.technicalDetail = technicalDetail;
+        this.description = description;
     }
 
     public int getProductId() { return id; }

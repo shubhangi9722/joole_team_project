@@ -29,8 +29,7 @@ public class ProductType {
     @Column(name = "model_year")
     private Date modelYear;
 
-    @OneToOne(mappedBy = "product_type",
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
     private Product product;
 

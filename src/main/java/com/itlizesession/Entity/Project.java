@@ -22,7 +22,7 @@ public class Project{
     private User user;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "project_project_id")
+    @JoinColumn(name = "id")
     private Project project;
 
     public User getUser() {
@@ -47,7 +47,7 @@ public class Project{
 
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = Project.class)
     @JoinColumn(name = "project_id", referencedColumnName = "id")
-    private List<Project> projectList = new ArrayList<>(){};
+    private Set<ProjectProduct> projectList = new HashSet<>(){};
 
     public Project getProject() {
         return project;
@@ -57,11 +57,11 @@ public class Project{
         this.project = project;
     }
 
-    public List<Project> getProjectList() {
+    public Set<ProjectProduct> getProjectList() {
         return projectList;
     }
 
-    public void setProjectList(List<Project> projectList) {
+    public void setProjectList(Set<ProjectProduct> projectList) {
         this.projectList = projectList;
     }
 

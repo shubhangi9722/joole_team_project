@@ -4,7 +4,7 @@ import com.itlizesession.Entity.Project;
 import com.itlizesession.Entity.User;
 import com.itlizesession.Services.ProjectService;
 import com.itlizesession.Services.UserService;
-import org.junit.Assert;
+//import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

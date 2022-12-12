@@ -5,12 +5,15 @@ import com.itlizesession.Entity.User;
 import com.itlizesession.Repositories.ProjectRepository;
 import com.itlizesession.Services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
 
 @Service
+@Repository
 public class ProjectServiceImplenets implements ProjectService {
 
     @Autowired

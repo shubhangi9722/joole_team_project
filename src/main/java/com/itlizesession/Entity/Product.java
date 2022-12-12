@@ -34,8 +34,9 @@ public class Product {
     private Description description;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    @JoinColumn(name = "project_product_id", referencedColumnName = "id")
-    private Set<ProjectProduct> project_product_list = new HashSet<ProjectProduct>(){};
+    @JoinColumn(name = "id" /*,referencedColumnName = "id"*/)
+    private Set<ProjectProduct> project_product_list = new HashSet<>() {
+    };
 
 
     public Product() {

@@ -21,7 +21,7 @@ public class Project{
     /*@OneToMany(fetch=FetchType.LAZY, mappedBy = "project",
             cascade = CascadeType.ALL)*/
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = User.class)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "id", referencedColumnName = "id")
     private User user;
 
     public User getUser() {

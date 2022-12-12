@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProjectRepository extends JpaRepository <Project, Integer> {
-    Optional<Project> findProjectById (Integer id);
+    Optional<Project> findProjectById (Integer project);
 
     Optional<List<Project>> findProjectByUserId(Integer userId);
 

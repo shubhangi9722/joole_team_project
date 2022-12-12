@@ -16,7 +16,7 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="entityManagerFactory" />
-          <factory-entry name="joole_team_project" />
+          <factory-entry name="joole_team_project" value="dd811c89-49f4-40db-84a6-64e2a2ad6d2a" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>

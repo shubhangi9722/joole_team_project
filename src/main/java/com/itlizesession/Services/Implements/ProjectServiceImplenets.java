@@ -38,11 +38,10 @@ public class ProjectServiceImplenets implements ProjectService {
     }
 
     @Override
-    public Project updateProjects(Project project) {
-        Project updateProj = repository.findProjectById(project.getProjectId()).orElse(null);
+    public Project updateProjects(Integer project) {
+        Project updateProj = repository.findProjectById(project).orElse(null);
         assert updateProj != null;
-        updateProj.setProjectId(project.getProjectId());
-        updateProj.setProjectList(project.getProjectList());
+        updateProj.setProjectId(project);
         return repository.save(updateProj);
     }
 
@@ -63,10 +62,9 @@ public class ProjectServiceImplenets implements ProjectService {
 
 
     @Override
-    public void delProject(Project project) {
-        Project delProj = repository.findProjectById(project.getProjectId()).orElse(null);
-        assert delProj != null;
-        repository.deleteById(delProj.getProjectId());
+    public ProjectRepository delProject(Integer delId) {
+        repository.deleteById(delId);
+        return repository;
     }
 
     @Override

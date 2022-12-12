@@ -14,7 +14,7 @@ import java.util.List;
 public class ProjectProduct {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "project_id")
+    @Column(name = "id")
     private int projProdid;
     private int project_id;
     private int product_id;

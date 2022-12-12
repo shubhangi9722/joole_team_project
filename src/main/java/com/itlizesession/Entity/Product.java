@@ -1,7 +1,5 @@
 package com.itlizesession.Entity;
 
-import org.hibernate.mapping.List;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;

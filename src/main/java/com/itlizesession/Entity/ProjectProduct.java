@@ -1,7 +1,7 @@
 package com.itlizesession.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.data.annotation.Id;
+//import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import java.util.ArrayList;

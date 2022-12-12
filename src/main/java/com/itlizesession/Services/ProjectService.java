@@ -2,6 +2,7 @@ package com.itlizesession.Services;
 
 import com.itlizesession.Entity.Project;
 import com.itlizesession.Entity.User;
+import com.itlizesession.Repositories.ProjectRepository;
 
 import java.util.List;
 import java.util.Set;
@@ -15,7 +16,7 @@ public interface ProjectService {
 
     List<Project> findAll();
 
-    Project updateProjects(Project project);
+    Project updateProjects(Integer integer);
 
     List<Project> findProjectsByUserId(User user);
 
@@ -25,7 +26,7 @@ public interface ProjectService {
 
     List<Project> findProjectsByIdContaining(Project project);
 
-    void delProject(Project project);
+    ProjectRepository delProject(Integer delId);
 
     Project save(Project project);
 

@@ -1,7 +1,9 @@
 package com.itlizesession.Entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -28,8 +30,20 @@ public class User {
     private String address;
 
     @OneToMany(mappedBy = "user", orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.EAGER )
-    private Set<Project> projectList = new HashSet<Project>(){};
+    private List<Project> projectList = new ArrayList<>(){
+    };
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JoinColumn(name = "project_id")
+    private Set<Project> project = new HashSet<>();
+
+    public Project getProject() {
+        return (Project) project;
+    }
+
+    public void setProject(Project project) {
+        this.project = (Set<Project>) project;
+    }
 
 
     public User(Integer id, String user_type, String userName, String userPassword, String address) {
@@ -91,11 +105,11 @@ public class User {
         this.address = address;
     }
 
-    public Set<Project> getProjectList() {
+    public List<Project> getProjectList() {
         return projectList;
     }
 
-    public void setProjectList(Set<Project> projectList) {
+    public void setProjectList(List<Project> projectList) {
         this.projectList = projectList;
     }
 }

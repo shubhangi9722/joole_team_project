@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/joole_team_project.iml" filepath="$PROJECT_DIR$/.idea/joole_team_project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Joole_Web_Development.iml" filepath="$PROJECT_DIR$/Joole_Web_Development.iml" />
     </modules>
   </component>
 </project>

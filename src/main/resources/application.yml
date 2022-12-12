@@ -5,10 +5,11 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: hmsien2000
-    url: jdbc:mysql://127.0.0.1:3306/JooleData?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    password: $Hubhangi97!
+    url: jdbc:mysql://localhost:3306/jooleproject?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
 
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+

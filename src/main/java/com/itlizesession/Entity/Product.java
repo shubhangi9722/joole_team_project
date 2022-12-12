@@ -33,6 +33,7 @@ public class Product {
     @JoinColumn(name = "description_id")
     private Description description;
 
+    @Column(name = "product_id")
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private Set<ProjectProduct> project_product_list = new HashSet<>(){};
 

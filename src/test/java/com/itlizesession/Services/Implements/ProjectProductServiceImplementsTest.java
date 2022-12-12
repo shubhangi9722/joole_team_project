@@ -19,8 +19,8 @@ class ProjectProductServiceImplementsTest {
     @Autowired
     ProjectService projectService;
 
-    @Autowired
-    ProductService productService;
+//    @Autowired
+//    ProductService productService;
 
     @Test
     void createProjProd() {

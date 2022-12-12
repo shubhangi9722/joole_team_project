@@ -5,10 +5,7 @@ package com.itlizesession.Entity;
 
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "project")
@@ -23,6 +20,10 @@ public class Project{
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = User.class)
     @JoinColumn(name = "id", referencedColumnName = "id")
     private User user;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "project_project_id")
+    private Project project;
 
     public User getUser() {
         return user;
@@ -44,15 +45,23 @@ public class Project{
         this.id = id;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = Project.class)
+    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = Project.class)
     @JoinColumn(name = "project_id", referencedColumnName = "id")
-    private Set<Project> projectList = new HashSet<Project>(){};
+    private List<Project> projectList = new ArrayList<>(){};
 
-    public Set<Project> getProjectList() {
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public List<Project> getProjectList() {
         return projectList;
     }
 
-    public void setProjectList(Set<Project> projectList) {
+    public void setProjectList(List<Project> projectList) {
         this.projectList = projectList;
     }
 

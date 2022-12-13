@@ -22,8 +22,7 @@ public class Description {
     @Column(name = "model")
     private String model;
 
-    @OneToOne(mappedBy = "description",
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
     private Product product;
 

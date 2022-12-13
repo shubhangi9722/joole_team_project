@@ -1,20 +1,15 @@
 package com.itlizesession.Entity;
 
-import org.hibernate.mapping.List;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- Created by Zehui Lu
- */
 @Entity
 @Table(name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
+    @Column(name = "id")
     private int id;
 
     @Column(name = "product_brand")
@@ -35,9 +30,8 @@ public class Product {
     @JoinColumn(name = "description_id")
     private Description description;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    @JoinColumn(name = "project_product_id", referencedColumnName = "id")
-    private Set<ProjectProduct> project_product_list = new HashSet<ProjectProduct>(){};
+    @OneToMany(mappedBy = "product", orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.EAGER )
+    private Set<ProjectProduct> productList = new HashSet<ProjectProduct>(){};
 
 
     public Product() {
@@ -90,10 +84,10 @@ public class Product {
         this.description = description;
     }
 
-    public Set<ProjectProduct> getProject_product_list() { return project_product_list; }
+    public Set<ProjectProduct> getProject_product_list() { return productList; }
 
-    public void setProject_product_list(Set<ProjectProduct> project_product_list) {
-        this.project_product_list = project_product_list;
+    public void setProject_product_list(Set<ProjectProduct> productList) {
+        this.productList = productList;
     }
 }
 

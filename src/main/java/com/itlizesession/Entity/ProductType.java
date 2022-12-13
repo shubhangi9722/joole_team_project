@@ -3,12 +3,13 @@ package com.itlizesession.Entity;
 import javax.persistence.*;
 import java.sql.Date;
 
+
 @Entity
 @Table(name = "product_type")
 public class ProductType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
+    @Column(name = "product_type_id")
     private int productId;
 
     @Column(name = "application")
@@ -24,23 +25,21 @@ public class ProductType {
     private String accessories;
 
     @Column(name = "model_year")
-    private Date model_year;
+    private Date modelYear;
 
-    @OneToOne(mappedBy = "product_type",
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "product_id")
     private Product product;
 
-    public ProductType(String application, String type, String mountingLocation, String accessories, Date model_year) {
+    public ProductType(String application, String type, String mountingLocation, String accessories, Date modelYear) {
         this.application = application;
         this.type = type;
         this.mountingLocation = mountingLocation;
         this.accessories = accessories;
-        this.model_year = model_year;
+        this.modelYear = modelYear;
     }
 
     public ProductType() {
-
     }
 
     public int getProductId() {
@@ -83,12 +82,12 @@ public class ProductType {
         this.accessories = accessories;
     }
 
-    public Date getModel_year() {
-        return model_year;
+    public Date getModelYear() {
+        return modelYear;
     }
 
-    public void setModel_year(Date model_year) {
-        this.model_year = model_year;
+    public void setModelYear(Date modelYear) {
+        this.modelYear = modelYear;
     }
 
     public Product getProduct() {

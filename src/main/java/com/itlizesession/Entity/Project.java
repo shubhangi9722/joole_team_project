@@ -1,28 +1,32 @@
 package com.itlizesession.Entity;
 
-import org.springframework.data.annotation.Id;
-//import org.springframework.data.relational.core.mapping.Column;
-
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 @Entity
 @Table(name = "project")
-public class Project{
+public class Project {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "project_id")
     private int id;
 
-    /*@OneToMany(fetch=FetchType.LAZY, mappedBy = "project",
-            cascade = CascadeType.ALL)*/
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = User.class)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
+
+    @OneToMany(mappedBy = "project", orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.EAGER )
+    private Set<ProjectProduct> projectList = new HashSet<ProjectProduct>(){};
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public User getUser() {
         return user;
@@ -32,29 +36,12 @@ public class Project{
         this.user = user;
     }
 
-    public Project() {
-
-    }
-
-    public Integer getProjectId() {
-        return id;
-    }
-
-    public void setProjectId(Integer id) {
-        this.id = id;
-    }
-
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = Project.class)
-    @JoinColumn(name = "project_id", referencedColumnName = "id")
-    private Set<Project> projectList = new HashSet<Project>(){};
-
-    public Set<Project> getProjectList() {
+    public Set<ProjectProduct> getProjectList() {
         return projectList;
     }
 
-    public void setProjectList(Set<Project> projectList) {
+    public void setProjectList(Set<ProjectProduct> projectList) {
         this.projectList = projectList;
     }
-
 }
 

@@ -19,7 +19,7 @@ public class TechnicalDetail {
     @Column(name = "power")
     private int power;
 
-    @Column(name = "operating_voltage")
+    @Column(name = "operation_voltage")
     private int operationVoltage;
 
     @Column(name = "fan_speed")
@@ -34,7 +34,7 @@ public class TechnicalDetail {
     @Column(name = "height")
     private int height;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "product_id")
     private Product product;
 

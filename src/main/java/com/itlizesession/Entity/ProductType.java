@@ -3,15 +3,13 @@ package com.itlizesession.Entity;
 import javax.persistence.*;
 import java.sql.Date;
 
-/**
- Created by Zehui Lu
- */
+
 @Entity
 @Table(name = "product_type")
 public class ProductType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
+    @Column(name = "product_type_id")
     private int productId;
 
     @Column(name = "application")
@@ -29,7 +27,7 @@ public class ProductType {
     @Column(name = "model_year")
     private Date modelYear;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "product_id")
     private Product product;
 
@@ -42,7 +40,6 @@ public class ProductType {
     }
 
     public ProductType() {
-
     }
 
     public int getProductId() {

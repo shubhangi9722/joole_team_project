@@ -1,20 +1,16 @@
-package com.itlizesession.Services;
-
-import com.itlizesession.Entity.User;
+package com.itlizesession.Service;
 
 
 import java.util.List;
-
+import com.itlizesession.Entity.User;
 
 public interface UserService {
 
     // save operation
     User saveUser(User user);
 
-    User createUserEntity(User user);
-
     // read operation
-    List<User> fetchUserList();
+    List<User> getAllUser();
 
     // update operation
     User updateUser(User user, int userId);

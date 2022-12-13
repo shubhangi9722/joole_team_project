@@ -1,29 +1,32 @@
 package com.itlizesession.Entity;
 
-//import org.springframework.data.annotation.Id;
-//import org.springframework.data.relational.core.mapping.Column;
-
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "project")
-public class Project{
+public class Project {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "project_id")
     private int id;
 
-    /*@OneToMany(fetch=FetchType.LAZY, mappedBy = "project",
-            cascade = CascadeType.ALL)*/
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = User.class)
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
-    private Project project;
+    @OneToMany(mappedBy = "project", orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.EAGER )
+    private Set<ProjectProduct> projectList = new HashSet<ProjectProduct>(){};
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public User getUser() {
         return user;
@@ -33,30 +36,6 @@ public class Project{
         this.user = user;
     }
 
-    public Project() {
-
-    }
-
-    public Integer getProjectId() {
-        return id;
-    }
-
-    public void setProjectId(Integer id) {
-        this.id = id;
-    }
-
-    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = Project.class)
-    @JoinColumn(name = "project_id", referencedColumnName = "id")
-    private Set<ProjectProduct> projectList = new HashSet<>(){};
-
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
-    }
-
     public Set<ProjectProduct> getProjectList() {
         return projectList;
     }
@@ -64,6 +43,5 @@ public class Project{
     public void setProjectList(Set<ProjectProduct> projectList) {
         this.projectList = projectList;
     }
-
 }
 

@@ -1,12 +1,14 @@
-package com.itlizesession.Services.Implements;
+package com.itlizesession.Service.Implements;
+
 
 import com.itlizesession.Entity.User;
-import com.itlizesession.Repositories.UserRepository;
-import com.itlizesession.Services.UserService;
+import com.itlizesession.Repository.UserRepository;
+import com.itlizesession.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImplements implements UserService {
@@ -15,22 +17,16 @@ public class UserServiceImplements implements UserService {
 
     @Override
     public User saveUser(User user) {
+        Optional<User> savedUser = repository.findByEmail(user.getEmail());
+        if(savedUser.isPresent()){
+            System.out.println("Employee already exist with given email:" + user.getEmail());
+        }
         return repository.save(user);
     }
 
     @Override
-    public List<User> fetchUserList() {
+    public List<User> getAllUser() {
         return repository.findAll();
-    }
-
-    public User createUserEntity(User user){
-        User userEntity = new User();
-        userEntity.setId(user.getId());
-        userEntity.setUserName(user.getUserName());
-        userEntity.setUserPassword(user.getUserPassword());
-        userEntity.setEmail(user.getEmail());
-        userEntity.setUser_type(user.getUser_type());
-        return userEntity;
     }
 
     @Override
@@ -39,15 +35,10 @@ public class UserServiceImplements implements UserService {
 
         // asserting as these operations will take place only when its not null
         assert existingUser != null;
-
-
         existingUser.setUserName(user.getUserName());
-        existingUser.setUserPassword(user.getUserPassword());
+        existingUser.setPassword(user.getPassword());
         existingUser.setUser_type(user.getUser_type());
         existingUser.setEmail(user.getEmail());
-
-        //adding for address too as even that is defined
-        existingUser.setAddress(user.getAddress());
         return repository.save(existingUser);
     }
 

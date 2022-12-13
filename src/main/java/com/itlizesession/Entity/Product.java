@@ -4,15 +4,12 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- Created by Zehui Lu
- */
 @Entity
 @Table(name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
+    @Column(name = "id")
     private int id;
 
     @Column(name = "product_brand")
@@ -21,29 +18,24 @@ public class Product {
     @Column(name = "certification")
     private String certification;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "product", fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_type_id")
     private ProductType productType;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "product", fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "technical_detail_id")
     private TechnicalDetail technicalDetail;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "product", fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "description_id")
     private Description description;
 
-    @Column(name = "product_id")
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private Set<ProjectProduct> project_product_list = new HashSet<>(){};
+    @OneToMany(mappedBy = "product", orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.EAGER )
+    private Set<ProjectProduct> productList = new HashSet<ProjectProduct>(){};
+
 
     public Product() {
 
-    }
-
-    public Product(String productBrand, String certification, ProductType productType, TechnicalDetail technicalDetail, Description description) {
-        this.productBrand = productBrand;
-        this.certification = certification;
-        this.productType = productType;
-        this.technicalDetail = technicalDetail;
-        this.description = description;
     }
 
     public int getProductId() { return id; }
@@ -92,10 +84,10 @@ public class Product {
         this.description = description;
     }
 
-    public Set<ProjectProduct> getProject_product_list() { return project_product_list; }
+    public Set<ProjectProduct> getProject_product_list() { return productList; }
 
-    public void setProject_product_list(Set<ProjectProduct> project_product_list) {
-        this.project_product_list = project_product_list;
+    public void setProject_product_list(Set<ProjectProduct> productList) {
+        this.productList = productList;
     }
 }
 

@@ -2,9 +2,6 @@ package com.itlizesession.Entity;
 
 import javax.persistence.*;
 
-/**
- Created by Zehui Lu
- */
 @Entity
 @Table(name = "description")
 public class Description {
@@ -22,7 +19,7 @@ public class Description {
     @Column(name = "model")
     private String model;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "product_id")
     private Product product;
 

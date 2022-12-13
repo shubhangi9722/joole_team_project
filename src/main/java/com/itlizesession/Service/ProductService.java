@@ -1,4 +1,5 @@
-package com.itlizesession.Services;
+package com.itlizesession.Service;
+
 
 import com.itlizesession.Entity.Description;
 import com.itlizesession.Entity.Product;

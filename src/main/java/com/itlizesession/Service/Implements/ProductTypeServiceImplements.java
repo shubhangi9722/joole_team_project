@@ -1,8 +1,9 @@
-package com.itlizesession.Services.Implements;
+package com.itlizesession.Service.Implements;
+
 
 import com.itlizesession.Entity.ProductType;
-import com.itlizesession.Repositories.ProductTypeRepository;
-import com.itlizesession.Services.ProductTypeService;
+import com.itlizesession.Repository.ProductTypeRepository;
+import com.itlizesession.Service.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,14 +1,10 @@
 package com.itlizesession.Service;
 
 import com.itlizesession.Entity.User;
-import com.itlizesession.Services.UserService;
-//import org.junit.Assert;
-//import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.util.Assert;
 
 @SpringBootTest
 public class UserServiceImplTest {
@@ -17,19 +13,21 @@ public class UserServiceImplTest {
     @Test
     public void saveUser() {
         User user = new User();
-        user.setUserName("qsl333i");
-        user.setUserPassword("12345678");
-        userService.saveUser(user);
-        System.out.println(user);
-        Assertions.assertEquals("qsli",user.getUserName());
-
+        user.setUserName("skjiao");
+        user.setEmail("skjiao@gmail.com");
+        user.setPassword("chaojiniu");
+        user.setUser_type("customer");
+        User savedUser = userService.saveUser(user);
+        Assertions.assertEquals("skjiao",user.getUserName());
     }
 
     @Test
-    public void findByUsername() {
-    }
+    private void getUsers() {
+        Iterable<User> users = userService.getAllUser();
 
-    @Test
-    public void create() {
+
+        for (User user : users) {
+            System.out.println(user);
+        }
     }
 }

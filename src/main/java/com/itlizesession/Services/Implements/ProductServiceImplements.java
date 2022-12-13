@@ -11,7 +11,6 @@ import com.itlizesession.Repositories.TechnicalDetailRepository;
 import com.itlizesession.Services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
 @Service

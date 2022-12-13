@@ -30,6 +30,7 @@ public class Product {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "product", fetch = FetchType.LAZY)
     private Description description;
 
+    @Column(name = "product_id")
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private Set<ProjectProduct> project_product_list = new HashSet<>(){};
 

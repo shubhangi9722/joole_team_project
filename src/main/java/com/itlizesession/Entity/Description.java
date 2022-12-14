@@ -1,10 +1,6 @@
 package com.itlizesession.Entity;
 
 import javax.persistence.*;
-
-/**
- Created by Zehui Lu
- */
 @Entity
 @Table(name = "description")
 public class Description {
@@ -22,8 +18,8 @@ public class Description {
     @Column(name = "model")
     private String model;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id")
+    @OneToOne(mappedBy = "description", cascade = {CascadeType.REFRESH})
+//    @JoinColumn(name = "id")
     private Product product;
 
     public Description(String manufacturer, String series, String model) {
@@ -75,5 +71,14 @@ public class Description {
     public void setProduct(Product product) {
         this.product = product;
     }
-}
 
+    @Override
+    public String toString() {
+        return "Description{" +
+                "descriptionId=" + descriptionId +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", series='" + series + '\'' +
+                ", model='" + model + '\'' +
+                '}';
+    }
+}

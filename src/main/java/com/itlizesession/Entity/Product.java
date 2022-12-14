@@ -4,16 +4,13 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- Created by Zehui Lu
- */
 @Entity
 @Table(name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
-    private int id;
+    private int productId;
 
     @Column(name = "product_brand")
     private String productBrand;
@@ -21,34 +18,40 @@ public class Product {
     @Column(name = "certification")
     private String certification;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "product", fetch = FetchType.LAZY)
+    @OneToOne(cascade={CascadeType.REFRESH, CascadeType.REMOVE})
+    @JoinColumn(name = "product_type_id")
     private ProductType productType;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "product", fetch = FetchType.LAZY)
+    @OneToOne(cascade={CascadeType.REFRESH, CascadeType.REMOVE})
+    @JoinColumn(name = "technical_detail_id")
     private TechnicalDetail technicalDetail;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "product", fetch = FetchType.LAZY)
+    @OneToOne(cascade={CascadeType.REFRESH, CascadeType.REMOVE})
+    @JoinColumn(name = "description_id")
     private Description description;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private Set<ProjectProduct> project_product_list = new HashSet<>(){};
+    @OneToMany(mappedBy = "product", orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.EAGER )
+    private Set<ProjectProduct> productList = new HashSet<ProjectProduct>(){};
+
 
     public Product() {
 
     }
 
-    public Product(String productBrand, String certification, ProductType productType, TechnicalDetail technicalDetail, Description description) {
-        this.productBrand = productBrand;
-        this.certification = certification;
-        this.productType = productType;
-        this.technicalDetail = technicalDetail;
-        this.description = description;
+    public int getProductId() {
+        return productId;
     }
 
-    public int getProductId() { return id; }
-
     public void setProductId(int productId) {
-        this.id = productId;
+        this.productId = productId;
+    }
+
+    public Set<ProjectProduct> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(Set<ProjectProduct> productList) {
+        this.productList = productList;
     }
 
     public String getProductBrand() {
@@ -91,10 +94,22 @@ public class Product {
         this.description = description;
     }
 
-    public Set<ProjectProduct> getProject_product_list() { return project_product_list; }
+    public Set<ProjectProduct> getProject_product_list() { return productList; }
 
-    public void setProject_product_list(Set<ProjectProduct> project_product_list) {
-        this.project_product_list = project_product_list;
+    public void setProject_product_list(Set<ProjectProduct> productList) {
+        this.productList = productList;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", productBrand='" + productBrand + '\'' +
+                ", certification='" + certification + '\'' +
+                ", productType=" + productType +
+                ", technicalDetail=" + technicalDetail +
+                ", description=" + description +
+                '}';
     }
 }
 

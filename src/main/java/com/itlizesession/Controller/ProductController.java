@@ -23,8 +23,8 @@ public class ProductController {
     public ResponseEntity<List<Product>>findAllProducts() { return new ResponseEntity<>(productService.findAllProducts(), HttpStatus.OK) ; }
 
     @GetMapping("/{id}")
-        public ResponseEntity<Product> findProductBYId(@PathVariable int id) {
-            return new ResponseEntity<>(productService.getProduct(id), HttpStatus.OK);
+    public ResponseEntity<Product> findProductBYId(@PathVariable int id) {
+        return new ResponseEntity<>(productService.getProduct(id), HttpStatus.OK);
     }
 
 //    @PostMapping("/create")
@@ -39,9 +39,9 @@ public class ProductController {
 //        return productService.createProduct(product1);
 //    }
 //
-    @GetMapping("/{id}")
-    public ResponseEntity<Product> readProduct(@PathVariable int id) {
-        return new ResponseEntity<>(productService.getProduct(id), HttpStatus.OK);
+    @PostMapping("/addProduct")
+    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
+        return new ResponseEntity<>(productService.createProduct(product), HttpStatus.OK);
     }
 
     @PutMapping("/updateProduct")

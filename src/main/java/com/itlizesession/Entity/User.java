@@ -1,3 +1,4 @@
+
 package com.itlizesession.Entity;
 
 import javax.persistence.*;
@@ -9,23 +10,22 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Integer id;
 
-    @Column(length = 15, nullable = false, name = "user_type")
-    private String userType;
+    @Column(name = "user_type")
+    private String user_type;
 
-    @Column(nullable = false, unique = true, length = 45, name = "email")
+    @Column(name = "email")
     private String email;
 
-    @Column(length = 15, nullable = false, name = "password")
+    @Column(name = "password")
     private String password;
 
-    @Column(length = 15, nullable = false, name = "user_name")
+    @Column(name = "user_name")
     private String userName;
 
     @OneToMany(mappedBy = "user", orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.EAGER )
-    private Set<Project> projectList = new HashSet<>(){};
+    private Set<Project> projectList = new HashSet<Project>(){};
 
     public Integer getId() {
         return id;
@@ -35,12 +35,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUserType() {
-        return userType;
+    public String getUser_type() {
+        return user_type;
     }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
+    public void setUser_type(String user_type) {
+        this.user_type = user_type;
     }
 
     public String getEmail() {
@@ -79,11 +79,11 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", user_type='" + userType + '\'' +
+                ", user_type='" + user_type + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", userName='" + userName + '\'' +
+                ", projectList=" + projectList +
                 '}';
     }
 }
-

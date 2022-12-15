@@ -1,4 +1,6 @@
+
 package com.itlizesession.Service.Implements;
+
 
 import com.itlizesession.Entity.TechnicalDetail;
 import com.itlizesession.Repository.TechnicalDetailRepository;

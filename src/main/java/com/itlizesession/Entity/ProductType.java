@@ -1,3 +1,4 @@
+
 package com.itlizesession.Entity;
 
 import javax.persistence.*;
@@ -108,4 +109,3 @@ public class ProductType {
                 '}';
     }
 }
-

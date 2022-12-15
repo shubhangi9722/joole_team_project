@@ -1,3 +1,4 @@
+
 package com.itlizesession.Entity;
 
 import javax.persistence.*;
@@ -135,4 +136,3 @@ public class TechnicalDetail {
                 '}';
     }
 }
-

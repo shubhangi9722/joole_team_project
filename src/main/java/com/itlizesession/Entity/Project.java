@@ -1,4 +1,6 @@
+
 package com.itlizesession.Entity;
+
 
 import javax.persistence.*;
 import java.util.*;

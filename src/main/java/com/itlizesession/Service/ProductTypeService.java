@@ -1,19 +1,19 @@
 package com.itlizesession.Service;
 
+
 import com.itlizesession.Entity.ProductType;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 import java.util.Set;
 
 public interface ProductTypeService {
     @Transactional
-    ProductType create(ProductType ProductType);
+    ProductType createProductType(ProductType ProductType);
 
-    ProductType findByOneId(int id);
+    Optional<ProductType> findbyType(String type);
 
-    Set<ProductType> readAll();
+    ProductType updateProductType(ProductType ProductType);
 
-    ProductType update(ProductType ProductType);
-
-    void delete(int id);
+    void deleteProductType(int id);
 }

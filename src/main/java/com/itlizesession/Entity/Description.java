@@ -72,6 +72,7 @@ public class Description {
         this.product = product;
     }
 
+
     @Override
     public String toString() {
         return "Description{" +

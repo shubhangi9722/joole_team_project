@@ -40,8 +40,8 @@ public class ProductController {
 //    }
 //
     @GetMapping("/{id}")
-    public ResponseEntity<Product> readProduct(@RequestParam("productId") Integer productId) {
-        return new ResponseEntity<>(productService.getProduct(productId), HttpStatus.OK);
+    public ResponseEntity<Product> readProduct(@PathVariable int id) {
+        return new ResponseEntity<>(productService.getProduct(id), HttpStatus.OK);
     }
 
     @PutMapping("/updateProduct")

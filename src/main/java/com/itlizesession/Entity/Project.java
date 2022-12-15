@@ -2,8 +2,7 @@ package com.itlizesession.Entity;
 
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "project")
@@ -11,21 +10,22 @@ public class Project {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "project_id")
-    private int id;
+    private int projectId;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = User.class)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+//    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(mappedBy = "project", orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.EAGER )
     private Set<ProjectProduct> projectList = new HashSet<ProjectProduct>(){};
 
-    public int getId() {
-        return id;
+    public int getProjectId() {
+        return projectId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
     }
 
     public User getUser() {
@@ -44,4 +44,3 @@ public class Project {
         this.projectList = projectList;
     }
 }
-

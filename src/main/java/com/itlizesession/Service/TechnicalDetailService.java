@@ -12,5 +12,5 @@ public interface TechnicalDetailService {
     boolean updateTechnicalDetail(TechnicalDetail description, Integer technicalDetailId);
 
     // delete
-    boolean deleteTechnicalDetail(TechnicalDetail technicalDetail);
+    boolean deleteTechnicalDetail(Integer technicalDetailId);
 }

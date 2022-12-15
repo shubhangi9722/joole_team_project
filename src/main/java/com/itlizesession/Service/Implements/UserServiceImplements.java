@@ -1,6 +1,7 @@
 package com.itlizesession.Service.Implements;
 
 
+
 import com.itlizesession.Entity.User;
 import com.itlizesession.Repository.UserRepository;
 import com.itlizesession.Service.UserService;
@@ -25,13 +26,13 @@ public class UserServiceImplements implements UserService {
     }
 
     @Override
-    public List<User> getAllUser() {
+    public List<User> listAll() {
         return repository.findAll();
     }
 
     @Override
-    public User updateUser(User user, int userId) {
-        User existingUser = repository.findById(userId).orElse(null);
+    public User updateUser(User user) {
+        User existingUser = repository.findById(user.getId()).orElse(null);
 
         // asserting as these operations will take place only when its not null
         assert existingUser != null;
@@ -44,6 +45,8 @@ public class UserServiceImplements implements UserService {
 
     @Override
     public void deleteUserById(int userId) {
+//        repository.findById(userId)
+//                .orElseThrow(() -> new UserNotFoundException(userId));
         repository.deleteById(userId);
     }
 }

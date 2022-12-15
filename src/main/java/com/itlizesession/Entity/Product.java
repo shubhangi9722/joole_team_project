@@ -9,8 +9,8 @@ import java.util.Set;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "product_id")
+    private int productId;
 
     @Column(name = "product_brand")
     private String productBrand;
@@ -18,15 +18,15 @@ public class Product {
     @Column(name = "certification")
     private String certification;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade={CascadeType.REFRESH, CascadeType.REMOVE})
     @JoinColumn(name = "product_type_id")
     private ProductType productType;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade={CascadeType.REFRESH, CascadeType.REMOVE})
     @JoinColumn(name = "technical_detail_id")
     private TechnicalDetail technicalDetail;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade={CascadeType.REFRESH, CascadeType.REMOVE})
     @JoinColumn(name = "description_id")
     private Description description;
 
@@ -38,10 +38,20 @@ public class Product {
 
     }
 
-    public int getProductId() { return id; }
+    public int getProductId() {
+        return productId;
+    }
 
     public void setProductId(int productId) {
-        this.id = productId;
+        this.productId = productId;
+    }
+
+    public Set<ProjectProduct> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(Set<ProjectProduct> productList) {
+        this.productList = productList;
     }
 
     public String getProductBrand() {
@@ -89,5 +99,16 @@ public class Product {
     public void setProject_product_list(Set<ProjectProduct> productList) {
         this.productList = productList;
     }
-}
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", productBrand='" + productBrand + '\'' +
+                ", certification='" + certification + '\'' +
+                ", productType=" + productType +
+                ", technicalDetail=" + technicalDetail +
+                ", description=" + description +
+                '}';
+    }
+}

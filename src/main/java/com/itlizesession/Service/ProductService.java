@@ -1,15 +1,13 @@
 package com.itlizesession.Service;
 
 
-import com.itlizesession.Entity.Description;
 import com.itlizesession.Entity.Product;
-import com.itlizesession.Entity.ProductType;
-import com.itlizesession.Entity.TechnicalDetail;
+
+import java.util.List;
 
 public interface ProductService {
     // create
-    boolean createProduct(Product product, ProductType productType, TechnicalDetail technicalDetail,
-                          Description description);
+    Product createProduct(Product product);
 
     // read
     Product getProduct(Integer productId);
@@ -18,5 +16,8 @@ public interface ProductService {
     boolean updateProduct(Product product, Integer productId);
 
     // delete
-    boolean deleteProduct(Product Product);
+    boolean deleteProduct(Integer productId);
+
+    //read all products
+    List<Product> findAllProducts();
 }

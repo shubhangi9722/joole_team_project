@@ -1,8 +1,6 @@
 package com.itlizesession.Entity;
 
 import javax.persistence.*;
-import java.sql.Date;
-
 
 @Entity
 @Table(name = "product_type")
@@ -10,7 +8,7 @@ public class ProductType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_type_id")
-    private int productId;
+    private int productTypeId;
 
     @Column(name = "application")
     private String application;
@@ -25,13 +23,13 @@ public class ProductType {
     private String accessories;
 
     @Column(name = "model_year")
-    private Date modelYear;
+    private Integer modelYear;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name = "product_id")
+    @OneToOne(mappedBy = "productType", cascade = CascadeType.REFRESH)
+//    @JoinColumn(name = "id")
     private Product product;
 
-    public ProductType(String application, String type, String mountingLocation, String accessories, Date modelYear) {
+    public ProductType(String application, String type, String mountingLocation, String accessories, Integer modelYear) {
         this.application = application;
         this.type = type;
         this.mountingLocation = mountingLocation;
@@ -42,12 +40,12 @@ public class ProductType {
     public ProductType() {
     }
 
-    public int getProductId() {
-        return productId;
+    public int getProductTypeId() {
+        return productTypeId;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setProductTypeId(int productTypeId) {
+        this.productTypeId = productTypeId;
     }
 
     public String getApplication() {
@@ -82,11 +80,11 @@ public class ProductType {
         this.accessories = accessories;
     }
 
-    public Date getModelYear() {
+    public Integer getModelYear() {
         return modelYear;
     }
 
-    public void setModelYear(Date modelYear) {
+    public void setModelYear(Integer modelYear) {
         this.modelYear = modelYear;
     }
 
@@ -97,5 +95,16 @@ public class ProductType {
     public void setProduct(Product product) {
         this.product = product;
     }
-}
 
+    @Override
+    public String toString() {
+        return "ProductType{" +
+                "productTypeId=" + productTypeId +
+                ", application='" + application + '\'' +
+                ", type='" + type + '\'' +
+                ", mountingLocation='" + mountingLocation + '\'' +
+                ", accessories='" + accessories + '\'' +
+                ", modelYear=" + modelYear +
+                '}';
+    }
+}

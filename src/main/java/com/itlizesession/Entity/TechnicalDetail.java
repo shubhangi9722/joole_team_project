@@ -2,9 +2,6 @@ package com.itlizesession.Entity;
 
 import javax.persistence.*;
 
-/**
- Created by Zehui Lu
- */
 @Entity
 @Table(name = "technical_detail")
 public class TechnicalDetail {
@@ -19,8 +16,8 @@ public class TechnicalDetail {
     @Column(name = "power")
     private int power;
 
-    @Column(name = "operation_voltage")
-    private int operationVoltage;
+    @Column(name = "operating_voltage")
+    private int operatingVoltage;
 
     @Column(name = "fan_speed")
     private int fanSpeed;
@@ -34,19 +31,18 @@ public class TechnicalDetail {
     @Column(name = "height")
     private int height;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name = "product_id")
+    @OneToOne(mappedBy = "technicalDetail", cascade = CascadeType.REFRESH)
     private Product product;
 
     public TechnicalDetail() {
 
     }
 
-    public TechnicalDetail(int airflow, int power, int operationVoltage, int fanSpeed, int soundAtMaxSpeed,
+    public TechnicalDetail(int airflow, int power, int operatingVoltage, int fanSpeed, int soundAtMaxSpeed,
                            int fanSweepDiameter, int height) {
         this.airflow = airflow;
         this.power = power;
-        this.operationVoltage = operationVoltage;
+        this.operatingVoltage = operatingVoltage;
         this.fanSpeed = fanSpeed;
         this.soundAtMaxSpeed = soundAtMaxSpeed;
         this.fanSweepDiameter = fanSweepDiameter;
@@ -77,12 +73,12 @@ public class TechnicalDetail {
         this.power = power;
     }
 
-    public int getOperationVoltage() {
-        return operationVoltage;
+    public int getOperatingVoltage() {
+        return operatingVoltage;
     }
 
-    public void setOperationVoltage(int operationVoltage) {
-        this.operationVoltage = operationVoltage;
+    public void setOperatingVoltage(int operatingVoltage) {
+        this.operatingVoltage = operatingVoltage;
     }
 
     public int getFanSpeed() {
@@ -124,5 +120,18 @@ public class TechnicalDetail {
     public void setProduct(Product product) {
         this.product = product;
     }
-}
 
+    @Override
+    public String toString() {
+        return "TechnicalDetail{" +
+                "technicalDetailId=" + technicalDetailId +
+                ", airflow=" + airflow +
+                ", power=" + power +
+                ", operatingVoltage=" + operatingVoltage +
+                ", fanSpeed=" + fanSpeed +
+                ", soundAtMaxSpeed=" + soundAtMaxSpeed +
+                ", fanSweepDiameter=" + fanSweepDiameter +
+                ", height=" + height +
+                '}';
+    }
+}

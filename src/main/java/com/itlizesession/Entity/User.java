@@ -11,16 +11,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(length = 15, nullable = false, name = "user_type")
+    @Column(name = "user_type")
     private String user_type;
 
-    @Column(nullable = false, unique = true, length = 45)
+    @Column(name = "email")
     private String email;
 
-    @Column(length = 15, nullable = false)
+    @Column(name = "password")
     private String password;
 
-    @Column(length = 15, nullable = false, name = "user_name")
+    @Column(name = "user_name")
     private String userName;
 
     @OneToMany(mappedBy = "user", orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.EAGER )
@@ -72,5 +72,17 @@ public class User {
 
     public void setProjectList(Set<Project> projectList) {
         this.projectList = projectList;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", user_type='" + user_type + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", userName='" + userName + '\'' +
+                ", projectList=" + projectList +
+                '}';
     }
 }

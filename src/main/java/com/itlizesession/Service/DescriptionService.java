@@ -13,5 +13,5 @@ public interface DescriptionService {
     boolean updateDescription(Description description, Integer descriptionId);
 
     // delete
-    boolean deleteDescription(Description description);
+    boolean deleteDescription(Integer descriptionId);
 }

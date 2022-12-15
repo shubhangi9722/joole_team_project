@@ -1,7 +1,7 @@
 package com.itlizesession.Entity;
 
-import javax.persistence.*;
 
+import javax.persistence.*;
 
 @Entity
 @Table(name = "project_product")

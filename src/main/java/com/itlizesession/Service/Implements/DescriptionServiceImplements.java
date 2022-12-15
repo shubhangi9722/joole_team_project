@@ -12,7 +12,6 @@ import java.util.Optional;
 @Transactional
 @Service
 public class DescriptionServiceImplements implements DescriptionService {
-
     @Autowired
     private DescriptionRepository descriptionRepository;
 
@@ -44,47 +43,5 @@ public class DescriptionServiceImplements implements DescriptionService {
             return res.get();
         }
         return null;
-    }
-
-    @Override
-    public boolean updateDescription(Description description, Integer descriptionId) {
-        if (description == null || descriptionId == null) {
-            System.out.println("null input");
-            return false;
-        }
-        Description descriptionToUpdate = descriptionRepository.getById(descriptionId);
-        if (descriptionToUpdate == null) {
-            System.out.println("No description with id: " + descriptionId);
-            return false;
-        }
-        try {
-//            System.out.println(description.getManufacturer());
-            descriptionToUpdate.setManufacturer(description.getManufacturer());
-//            System.out.println(description.getSeries());
-            descriptionToUpdate.setSeries(description.getSeries());
-            descriptionToUpdate.setModel(description.getModel());
-            descriptionRepository.save(descriptionToUpdate);
-        } catch (Exception e) {
-            System.out.println("something wrong when updating: " + e.getMessage());
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public boolean deleteDescription(Integer descriptionId) {
-        if (descriptionId == null) {
-            System.out.println("null input");
-            return false;
-        }
-        Description description = getDescription(descriptionId);
-        if (description == null) return false;
-        try {
-            descriptionRepository.delete(description);
-        } catch (Exception e) {
-            System.out.println("something wrong when deleting: " + e.getMessage());
-            return false;
-        }
-        return true;
     }
 }

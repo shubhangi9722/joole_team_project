@@ -1,24 +1,44 @@
 package com.itlizesession.Controller;
 
-
 import com.itlizesession.Entity.User;
 import com.itlizesession.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class UserController {
     @Autowired
     private UserService service;
 
+    @PostMapping("/addUser")
+    public User addUser(@RequestBody User user) {
+        return service.saveUser(user);
+    }
+
+//    @PostMapping("/addUsers")
+//    public List<User> addUsers(@RequestBody List<User> users) {
+//        return service.saveUsers(users);
+//    }
+
     @GetMapping("/users")
-    public String showUserList(Model model) {
-        List<User> users = service.getAllUser();
-        model.addAllAttributes(users);
-        return "users";
+    public List<User> findAllUsers() {
+        return service.listAll();
+    }
+
+//    @GetMapping("/user/{id}")
+//    public User findUserById(int id) {
+//        return service.(id);
+//    }
+
+    @PutMapping("/updateUser")
+    public User updateUser(@RequestBody User user) {
+        return service.updateUser(user);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteUser(int id) {
+        service.deleteUserById(id);
     }
 }

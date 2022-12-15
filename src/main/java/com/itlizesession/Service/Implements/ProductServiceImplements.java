@@ -13,7 +13,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Transactional
+
 @Service
 public class ProductServiceImplements implements ProductService {
     @Autowired
@@ -47,11 +47,9 @@ public class ProductServiceImplements implements ProductService {
     @Override
     public Product getProduct(Integer productId) {
         if (productId == null) return null;
-        Optional<Product> res = productRepository.findById(productId);
-        if (res.isPresent()) {
-            return res.get();
-        }
-        return null;
+        Product res = productRepository.findById(productId).orElse(null);
+        return res;
+
     }
 
     @Override
@@ -60,7 +58,7 @@ public class ProductServiceImplements implements ProductService {
             System.out.println("null input");
             return false;
         }
-        Product productToUpdate = productRepository.getById(productId);
+        Product productToUpdate = productRepository.findById(productId).orElse(null);
         if (productToUpdate == null) {
             System.out.println("No product with id: " + productId);
             return false;
@@ -71,6 +69,7 @@ public class ProductServiceImplements implements ProductService {
             productToUpdate.setProductType(product.getProductType());
             productToUpdate.setDescription(product.getDescription());
             productToUpdate.setTechnicalDetail(product.getTechnicalDetail());
+            productRepository.save(productToUpdate);
         } catch (Exception e) {
             System.out.println("something wrong when updating: " + e.getMessage());
             return false;

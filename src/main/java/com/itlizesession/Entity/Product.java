@@ -1,5 +1,8 @@
 package com.itlizesession.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,19 +21,22 @@ public class Product {
     @Column(name = "certification")
     private String certification;
 
-    @OneToOne(cascade={CascadeType.REFRESH, CascadeType.REMOVE})
+
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "product_type_id")
     private ProductType productType;
 
-    @OneToOne(cascade={CascadeType.REFRESH, CascadeType.REMOVE})
+
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "technical_detail_id")
     private TechnicalDetail technicalDetail;
 
-    @OneToOne(cascade={CascadeType.REFRESH, CascadeType.REMOVE})
+
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "description_id")
     private Description description;
 
-    @OneToMany(mappedBy = "product", orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.EAGER )
+    @OneToMany(mappedBy = "product", orphanRemoval = true,cascade = CascadeType.ALL )
     private Set<ProjectProduct> productList = new HashSet<ProjectProduct>(){};
 
 
@@ -100,16 +106,16 @@ public class Product {
         this.productList = productList;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "productId=" + productId +
-                ", productBrand='" + productBrand + '\'' +
-                ", certification='" + certification + '\'' +
-                ", productType=" + productType +
-                ", technicalDetail=" + technicalDetail +
-                ", description=" + description +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Product{" +
+//                "productId=" + productId +
+//                ", productBrand='" + productBrand + '\'' +
+//                ", certification='" + certification + '\'' +
+//                ", productType=" + productType +
+//                ", technicalDetail=" + technicalDetail +
+//                ", description=" + description +
+//                '}';
+//    }
 }
 

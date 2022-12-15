@@ -9,23 +9,22 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Integer id;
 
-    @Column(length = 15, nullable = false, name = "user_type")
+    @Column(name = "user_type")
     private String userType;
 
-    @Column(nullable = false, unique = true, length = 45, name = "email")
+    @Column(name = "email")
     private String email;
 
-    @Column(length = 15, nullable = false, name = "password")
+    @Column(name = "password")
     private String password;
 
-    @Column(length = 15, nullable = false, name = "user_name")
+    @Column(name = "user_name")
     private String userName;
 
     @OneToMany(mappedBy = "user", orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.EAGER )
-    private Set<Project> projectList = new HashSet<>(){};
+    private Set<Project> projectList = new HashSet<Project>(){};
 
     public Integer getId() {
         return id;
@@ -83,6 +82,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", userName='" + userName + '\'' +
+                ", projectList=" + projectList +
                 '}';
     }
 }

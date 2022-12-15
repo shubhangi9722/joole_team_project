@@ -139,9 +139,9 @@ class ProductServiceImplementsTest {
     @Test
     void updateProduct() {
         Product toUpdate = productService.getProduct(2);
-//        System.out.println(toUpdate);
-        toUpdate.setProductBrand("Fulton Inc");
-//        System.out.println(toUpdate);
+        System.out.println(toUpdate);
+        toUpdate.setProductBrand("tester Inc");
+        System.out.println(toUpdate);
         boolean isSuccessful = productService.updateProduct(toUpdate, 2);
 //        System.out.println(isSuccessful);
         Assertions.assertTrue(isSuccessful);
@@ -156,7 +156,7 @@ class ProductServiceImplementsTest {
     @Test
     void findAllProducts() {
         List<Product> productList = productService.findAllProducts();
-//        System.out.println(productList);
+        System.out.println(productList);
         Assertions.assertNotNull(productList);
     }
 }
